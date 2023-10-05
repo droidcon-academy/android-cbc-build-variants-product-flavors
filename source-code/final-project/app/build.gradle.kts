@@ -39,6 +39,12 @@ android {
             keyAlias = project.property("CARBUDDY_RELEASE_KEY_ALIAS").toString()
             keyPassword = project.property("CARBUDDY_RELEASE_KEY_PASSWORD").toString()
         }
+        create("investbuddyRelease") {
+            storeFile = file(project.property("INVESTBUDDY_RELEASE_KEYSTORE_FILE").toString())
+            storePassword = project.property("INVESTBUDDY_RELEASE_STORE_PASSWORD").toString()
+            keyAlias = project.property("INVESTBUDDY_RELEASE_KEY_ALIAS").toString()
+            keyPassword = project.property("INVESTBUDDY_RELEASE_KEY_PASSWORD").toString()
+        }
         create("sipcalcRelease") {
             storeFile = file(project.property("SIPCALC_RELEASE_KEYSTORE_FILE").toString())
             storePassword = project.property("SIPCALC_RELEASE_STORE_PASSWORD").toString()
@@ -85,6 +91,17 @@ android {
             )
             buildConfigField("String", "apply_url", "\"https://play.kotlinlang.org/\"")
         }
+        create("investbuddy") {
+            dimension = "customer"
+            applicationId = "com.droidcon.wealthbuddy.investbuddy"
+            buildConfigField("boolean", "isInvestment", "true")
+            buildConfigField(
+                "String",
+                "connect_url",
+                "\"https://developer.android.com/build/build-variants\""
+            )
+            buildConfigField("String", "apply_url", "\"https://play.kotlinlang.org/\"")
+        }
     }
 
     buildTypes {
@@ -94,6 +111,8 @@ android {
         getByName("release") {
             productFlavors.getByName("carbuddy").signingConfig =
                 signingConfigs.getByName("carbuddyRelease")
+            productFlavors.getByName("investbuddy").signingConfig =
+                signingConfigs.getByName("investbuddyRelease")
             productFlavors.getByName("sipcalculator").signingConfig =
                 signingConfigs.getByName("sipcalcRelease")
             isMinifyEnabled = true
@@ -105,12 +124,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "18"
     }
 
     buildFeatures {
