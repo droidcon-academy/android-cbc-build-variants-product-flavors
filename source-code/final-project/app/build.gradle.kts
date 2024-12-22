@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     // Add the Google services Gradle plugin
     //id("com.google.gms.google-services")
@@ -12,12 +13,12 @@ plugins {
 
 android {
     namespace = "com.droidcon.wealthbuddy"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.droidcon.wealthbuddy"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
